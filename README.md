@@ -12,8 +12,28 @@ We propose a unified framework aimed at enhancing the diffusion priors for 3D ge
 
 
 ## Installation
+
+- Install pytorch and torch vision
+```sh
+# torch1.12.1+cu113
+pip install torch==1.12.1+cu113 torchvision==0.13.1+cu113 --extra-index-url https://download.pytorch.org/whl/cu113
+# or torch2.0.0+cu118
+pip install torch torchvision --index-url https://download.pytorch.org/whl/cu118
+```
+
+- Install glm (required by 3D Gaussian Splatting)
+```sh
+sudo apt-get install -y libglm-dev
+```
+
+- Install dependencies:
+```sh
+pip install -r requirements.txt
+```
+
 Our codes are based on the implementations of [ThreeStudio](https://github.com/threestudio-project/threestudio) and [GaussianDreamer](https://github.com/hustvl/GaussianDreamer).
-Please follow the instructions from two links to install the project.
+If you have any problem with the installation, you may search the issues in these two repos first.
+Also feel free to open a new issue here.
 
 ## Quickstart
 ### 2D Playground
@@ -44,4 +64,14 @@ python launch.py --config configs/lods-ngp-lora.yaml --train --gpu 0 system.prom
 python launch.py --config configs/lods-ngp-embedding.yaml --train --gpu 0 system.prompt_processor.prompt="a DSLR image of a hamburger"
 ```
 
+## Credits
 
+LODS is built on the following open-source projects:
+- **[ThreeStudio](https://github.com/threestudio-project/threestudio)** Main Framework
+- **[GaussianDreamer](https://github.com/hustvl/GaussianDreamer)** 3D Gaussian Splatting
+- **[3D Gaussian Splatting](https://github.com/graphdeco-inria/gaussian-splatting)** 3D Gaussian Splatting
+
+Credits from ThreeStudio
+- **[Lightning](https://github.com/Lightning-AI/lightning)** Framework for creating highly organized PyTorch code.
+- **[OmegaConf](https://github.com/omry/omegaconf)** Flexible Python configuration system.
+- **[NerfAcc](https://github.com/KAIR-BAIR/nerfacc)** Plug-and-play NeRF acceleration.

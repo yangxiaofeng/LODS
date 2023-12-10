@@ -469,7 +469,7 @@ class StableDiffusionLODSGuidance(BaseModule):
             latents_noisy = self.scheduler.add_noise(latents, noise, t)
             # pred noise
             text_embeddings_cond, text_embeddings_uncond = text_embeddings_vd.chunk(2)
-            noise_pred_pretrain = self.forward_unet(
+            noise_pred_cond = self.forward_unet(
                 self.unet,
                 latents_noisy,
                 t,
@@ -477,8 +477,7 @@ class StableDiffusionLODSGuidance(BaseModule):
                 cross_attention_kwargs={"scale": 0.0},
             )
 
-            # use view-independent text embeddings in LoRA
-            noise_pred_est = self.forward_unet(
+            noise_pred_uncon = self.forward_unet(
                 self.unet_lora,
                 latents_noisy,
                 t,
@@ -486,10 +485,8 @@ class StableDiffusionLODSGuidance(BaseModule):
                 cross_attention_kwargs={"scale": self.lora_weight},
             )
 
-
-
         # NOTE: guidance scale definition here is aligned with diffusers, but different from other guidance
-        noise_pred_pretrain = noise_pred_pretrain - noise /  self.cfg.guidance_scale - noise_pred_est * (self.cfg.guidance_scale -1)/self.cfg.guidance_scale
+        noise_pred_pretrain = noise_pred_cond - noise /  self.cfg.guidance_scale + noise_pred_uncon * (1 - self.cfg.guidance_scale)/self.cfg.guidance_scale
         w = (1 - self.alphas[t]).view(-1, 1, 1, 1)
 
         grad = w * noise_pred_pretrain

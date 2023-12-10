@@ -168,7 +168,7 @@ class GaussianDreamer(BaseLift3DSystem):
         for point in points:
             _, idx, _ = kdtree.search_knn_vector_3d(point, 1)
             nearest_point = np.asarray(pcd_by3d.points)[idx[0]]
-            if np.linalg.norm(point - nearest_point) < 0.01:  # 这个阈值可能需要调整
+            if np.linalg.norm(point - nearest_point) < 0.01:
                 points_inside.append(point)
                 color_inside.append(rgb[idx[0]]+0.2*np.random.random(3))
 

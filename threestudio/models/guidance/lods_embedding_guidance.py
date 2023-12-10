@@ -361,12 +361,12 @@ class StableDiffusionLODSGuidance(BaseModule):
 
 
         (
-            noise_pred_pretrain_text,
-            noise_pred_pretrain_diff,
+            noise_pred_cond,
+            noise_pred_uncon,
         ) = noise_pred_pretrain.chunk(2)
 
         # NOTE: guidance scale definition here is aligned with diffusers, but different from other guidance
-        noise_pred_pretrain =   noise_pred_pretrain_text - (self.cfg.guidance_scale-1)/self.cfg.guidance_scale*noise_pred_pretrain_diff - noise/self.cfg.guidance_scale
+        noise_pred_pretrain =  noise_pred_cond + (1- self.cfg.guidance_scale)/self.cfg.guidance_scale*noise_pred_uncon - noise/self.cfg.guidance_scale
 
 
         w = (1 - self.alphas[t]).view(-1, 1, 1, 1)
@@ -399,9 +399,6 @@ class StableDiffusionLODSGuidance(BaseModule):
 
         noise = torch.randn_like(latents)
         latents_noisy = self.scheduler.add_noise(latents, noise, t)
-
-        # resemble text embedding
-
 
         noise_pred_text = self.forward_unet(
             self.unet,

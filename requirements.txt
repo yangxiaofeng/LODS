@@ -41,4 +41,7 @@ git+https://github.com/openai/CLIP.git
 #controlnet
 controlnet_aux
 
-
+# GS
+open3d
+ipywidgets
+plyfile
