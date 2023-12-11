@@ -1,5 +1,5 @@
 # Learn to Optimize Denoising Scores for 3D Generation: A Unified and Improved Diffusion Prior on NeRF and 3D Gaussian Splatting
-### [Project Page](https://yangxiaofeng.github.io/demo_diffusion_prior/) | [Arxiv Paper]()
+### [Project Page](https://yangxiaofeng.github.io/demo_diffusion_prior/) | [Arxiv Paper](https://arxiv.org/abs/2312.04820)
 
 
 
