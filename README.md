@@ -33,6 +33,17 @@ sudo apt-get install -y libglm-dev
 pip install -r requirements.txt
 ```
 
+- Install 3DGS and Shap-E:
+```sh
+pip install ninja
+pip install ./gaussiansplatting/submodules/diff-gaussian-rasterization
+pip install ./gaussiansplatting/submodules/simple-knn
+
+git clone https://github.com/openai/shap-e.git
+cd shap-e
+pip install -e .
+```
+
 Our codes are based on the implementations of [ThreeStudio](https://github.com/threestudio-project/threestudio) and [GaussianDreamer](https://github.com/hustvl/GaussianDreamer).
 If you have any problem with the installation, you may search the issues in these two repos first.
 Also feel free to open a new issue here.
