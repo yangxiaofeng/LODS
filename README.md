@@ -88,3 +88,13 @@ Credits from ThreeStudio
 - **[Lightning](https://github.com/Lightning-AI/lightning)** Framework for creating highly organized PyTorch code.
 - **[OmegaConf](https://github.com/omry/omegaconf)** Flexible Python configuration system.
 - **[NerfAcc](https://github.com/KAIR-BAIR/nerfacc)** Plug-and-play NeRF acceleration.
+
+## Citation
+```
+@article{yang2023lods,
+  title={Learn to Optimize Denoising Scores for 3D Generation},
+  author={Xiaofeng Yang, Yiwen Chen, Cheng Chen, Chi Zhang, Yi Xu, Xulei Yang, Fayao Liu and Guosheng Lin},
+  journal={arXiv:2312.04820},
+  year={2023}
+}
+```
