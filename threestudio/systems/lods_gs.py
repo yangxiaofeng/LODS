@@ -84,7 +84,7 @@ class GaussianDreamer(BaseLift3DSystem):
         self.gaussian = GaussianModel(sh_degree = 0)
         bg_color = [1, 1, 1] if False else [0, 0, 0]
         self.background_tensor = torch.tensor(bg_color, dtype=torch.float32, device="cuda")
-
+        self.guidance = threestudio.find(self.cfg.guidance_type)(self.cfg.guidance)
 
     def save_gif_to_file(self,images, output_file):
         with io.BytesIO() as writer:
@@ -248,7 +248,7 @@ class GaussianDreamer(BaseLift3DSystem):
         self.prompt_processor = threestudio.find(self.cfg.prompt_processor_type)(
             self.cfg.prompt_processor
         )
-        self.guidance = threestudio.find(self.cfg.guidance_type)(self.cfg.guidance)
+
 
     def training_step(self, batch, batch_idx):
 
@@ -486,13 +486,20 @@ class GaussianDreamer(BaseLift3DSystem):
         self.parser = ArgumentParser(description="Training script parameters")
 
         opt = OptimizationParams(self.parser)
+
         point_cloud = self.pcb()
         self.cameras_extent = 3.5
         self.gaussian.create_from_pcd(point_cloud, self.cameras_extent)
 
         self.pipe = PipelineParams(self.parser)
         self.gaussian.training_setup(opt)
+        # comment the following 2 lines if use sds
 
+        learnable_embedding_param_group = {'params': self.guidance.parameters(),'lr': 0.0001,
+                                           'name': 'learnable_embedding','betas':(0.9, 0.99), 'amsgrad':False,
+                                           'weight_decay': 0,'eps':1e-15,'maximize':False,'foreach' :None ,
+                                           'capturable' : False,'differentiable': True,'fused':None}
+        self.gaussian.optimizer.add_param_group(learnable_embedding_param_group)
         ret = {
             "optimizer": self.gaussian.optimizer,
         }
