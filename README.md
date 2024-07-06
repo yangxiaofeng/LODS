@@ -8,12 +8,7 @@ We propose a unified framework aimed at enhancing the diffusion priors for 3D ge
 </p>
 
 ## 🔥🔥NEW
-Interested in Stable Diffusion 3 to 3D? Check out our new work [here](https://github.com/yangxiaofeng/rectified_flow_prior). 
-
-## Updates
-- 07/12/2023: Code Released.
-
-
+Interested in Stable Diffusion 3 to 3D? Check out our new work [here](https://github.com/yangxiaofeng/rectified_flow_prior).
 
 
 ## Installation
