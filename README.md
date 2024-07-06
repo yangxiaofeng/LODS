@@ -1,4 +1,4 @@
-# Learn to Optimize Denoising Scores for 3D Generation: A Unified and Improved Diffusion Prior on NeRF and 3D Gaussian Splatting
+# (ECCV 2024) Learn to Optimize Denoising Scores: A Unified and Improved Diffusion Prior for 3D Generation
 ### [Project Page](https://yangxiaofeng.github.io/demo_diffusion_prior/) | [Arxiv Paper](https://arxiv.org/abs/2312.04820)
 
 
@@ -6,6 +6,9 @@
 <p style='text-align: justify;'> 
 We propose a unified framework aimed at enhancing the diffusion priors for 3D generation tasks. Despite the critical importance of these tasks, existing methodologies often struggle to generate high-caliber results. We begin by examining the inherent limitations in previous diffusion priors. We identify a divergence between the diffusion priors and the training procedures of diffusion models that substantially impairs the quality of 3D generation. To address this issue, we propose a novel, unified framework that iteratively optimizes both the 3D model and the diffusion prior. Leveraging the different learnable parameters of the diffusion prior, our approach offers multiple configurations, affording various trade-offs between performance and implementation complexity. Notably, our experimental results demonstrate that our method markedly surpasses existing techniques, establishing new state-of-the-art in the realm of text-to-3D generation. Furthermore, our approach exhibits impressive performance on both NeRF and the newly introduced 3D Gaussian Splatting backbones. Additionally, our framework yields insightful contributions to the understanding of recent score distillation methods, such as the VSD and DDS loss.
 </p>
+
+## 🔥🔥NEW
+Interested in Stable Diffusion 3 to 3D? Check out our new work [here](https://github.com/yangxiaofeng/rectified_flow_prior). 
 
 ## Updates
 - 07/12/2023: Code Released.
